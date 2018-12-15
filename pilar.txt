@@ -1,0 +1,52 @@
+
+package visualloop5;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+/**
+ *
+ * @author rasmi
+ */
+class Pilar {
+
+    
+    Canvas canvas = null;    
+    float lebar;
+    float x;
+    float y1,y2;
+    Color color;
+
+    public Pilar(Canvas canvas, float lebar, float x, float y1, float y2, Color color) {
+        this.canvas = canvas;
+        this.lebar = lebar;
+        this.x = x;
+        this.y1 = y1;
+        this.y2 = y2;
+        this.color = color;
+    }
+    
+    public void updateX(float deltaX){
+        x-=deltaX;
+    }
+
+    public void draw(){
+        try{
+            if(canvas!=null){
+                GraphicsContext gc = canvas.getGraphicsContext2D();
+                gc.setFill(color);
+                //STATLAKTIT
+                gc.fillRect(x, 0, lebar, y1);
+                //STALAKMIT
+                gc.fillRect(x, y2, lebar, canvas.getHeight()-y2);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }    
+    
+}
+
+
+    
+
